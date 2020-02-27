@@ -1,13 +1,10 @@
 <template>
-  <v-card
-    class="ma-2"
-    max-width="400"
-  >
+  <v-card class="ma-2"
+          max-width="400">
     <v-img
       class="white--text align-end"
       height="200px"
-      :src='tourInfo.picture'
-    >
+      :src='tourInfo.picture'>
       <v-card-title>{{ tourInfo.title }}</v-card-title>
     </v-img>
 
@@ -35,8 +32,7 @@
         Explore
       </v-btn>
     </v-card-actions>
-  </v-card
-    class="ma-2">
+  </v-card>
 </template>
 
 <script>

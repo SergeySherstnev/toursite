@@ -1,15 +1,15 @@
 <template>
-  <div class="home">
+  <v-container fluid fill-height id="home-page">
     <div v-for="tour of tours" v-bind:key="tour.id">
-<!--      <v-flex class="pa-4">-->
-        <tour-brief-card :tourInfo="tour"/>
-<!--      </v-flex>-->
+        <tour-brief-card :tourInfo="tour"
+                         @click="openDetailedCard(key)"/>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
   // @ is an alias to /src
+  import { EventBus } from '@/event-bus.js'
   import TourBriefCard from '@/components/TourBriefCard.vue'
 
   export default {
@@ -37,5 +37,11 @@
           picture: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
         }],
     }),
+    methods: {
+          openDetailedCard (id) {
+            console.log(id)
+            //EventBus.$emit(id)
+          }
+        }
   }
 </script>
