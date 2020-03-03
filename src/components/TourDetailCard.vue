@@ -1,18 +1,14 @@
 <template>
   <v-dialog v-model="dialog"
               persistent no-click-animation @keydown.esc="close"
-              @click:outside="close"
-              max-width="800px">
+              max-width="500px">
     <v-card
-      class="mx-auto my-12"
-      max-width="374"
     >
       <v-img
-        height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        :src='tourInfo.picture'
       ></v-img>
 
-      <v-card-title>Excursion name</v-card-title>
+      <v-card-title>{{ tourInfo.title }}</v-card-title>
 
       <v-card-text>
         <v-row
@@ -35,7 +31,7 @@
           100$ 4 / 15
         </div>
 
-        <div>Excursion description</div>
+        <div>{{ tourInfo.description }}</div>
       </v-card-text>
 
       <v-divider class="mx-4"></v-divider>
@@ -73,16 +69,23 @@
 <script>
   export default {
     name: 'TourDetailCard',
-    props: ['tourInfo'],
+    // props: ['tourInfo'],
     data: () => ({
       dialog: false,
+      tourInfo: {
+          title: 'Title',
+          subtitle: 'Subtitle',
+          description: 'Description',
+          picture: 'images/' + 'peterhof_large.jpg',
+      },
       selection: 1
     }),
 
     methods: {
-      open (tourInfo) {
+      open (item) {
           console.log('Info: ')
-          console.log(tourInfo)
+          console.log(item)
+          this.tourInfo = Object.assign({}, item)
           this.dialog = true
       },
       close () {

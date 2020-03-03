@@ -2,7 +2,7 @@
   <v-container fluid fill-height id="home-page">
     <div v-for="tour of tours" v-bind:key="tour.id">
         <tour-brief-card :tourInfo="tour"
-                         @click="openDetailedCard(key)"/>
+                         @click="openDetailedCard(tour.id)"/>
     </div>
     <tour-detail-card ref="detailDialog"/>
   </v-container>
@@ -23,27 +23,30 @@
     data: () => ({
       'tours': [{
         id: 0,
-        title: 'Top 10 Australian beaches',
+        title: 'Ermitazh',
         subtitle: 'Number 10',
+        description: 'Description',
         picture: 'images/' + 'Ermitazh_large.jpg',
       },
         {
           id: 1,
           title: 'City Tour',
           subtitle: 'Number 1',
+          description: 'Description',
           picture: 'images/' + 'petersburg_large.jpg',
         },
         {
           id: 2,
           title: 'Peterhof',
           subtitle: 'Number 2',
+          description: 'Description',
           picture: 'images/' + 'peterhof_large.jpg',
         }],
     }),
     methods: {
           openDetailedCard (id) {
             console.log(id)
-            // this.$refs.detailDialog.open(this.tours[id])
+            this.$refs.detailDialog.open(this.tours[id])
             // EventBus.$emit(id)
           }
         }
