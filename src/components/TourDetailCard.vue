@@ -1,35 +1,25 @@
 <template>
   <v-dialog v-model="dialog"
               persistent no-click-animation @keydown.esc="close"
-              max-width="500px">
-    <v-card
-    >
-      <v-img
-        :src='tourInfo.picture'
-      ></v-img>
-
-      <v-card-title>{{ tourInfo.title }}</v-card-title>
+              scrollable
+              max-width="800px">
+    <v-card>
+      <v-img :src="tourInfo.picture + '_large.jpg'"></v-img>
+      <v-card-title class="justify-center">{{ tourInfo.title }}</v-card-title>
 
       <v-card-text>
-        <v-row
-          align="center"
-          class="mx-0"
-        >
-          <v-rating
-            :value="4.5"
-            color="amber"
-            dense
-            half-increments
-            readonly
-            size="14"
-          ></v-rating>
+        <v-row  justify="end"
+                align="center"
+                class="mx-0">
+          <v-rating :value=tourInfo.score
+                    color="amber"
+                    dense
+                    half-increments
+                    readonly
+                    size="14"></v-rating>
 
-          <div class="grey--text ml-4">4.5 (413)</div>
+          <div class="grey--text ml-4">{{ tourInfo.score }} ({{ tourInfo.scoreTotal }})</div>
         </v-row>
-
-        <div class="my-4 subtitle-1 black--text">
-          100$ 4 / 15
-        </div>
 
         <div>{{ tourInfo.description }}</div>
       </v-card-text>
@@ -42,33 +32,35 @@
         <v-chip-group
           v-model="selection"
           active-class="deep-purple accent-4 white--text"
-          column
-        >
-          <v-chip>5:30PM</v-chip>
-
-          <v-chip>7:30PM</v-chip>
-
-          <v-chip>8:00PM</v-chip>
-
-          <v-chip>9:00PM</v-chip>
+          column>
+            <v-chip label>5:30PM</v-chip>
+            <v-chip label>7:30PM</v-chip>
+            <v-chip label>8:00PM</v-chip>
+            <v-chip label>9:00PM</v-chip>
         </v-chip-group>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn
-          color="deep-purple accent-4"
-          text
-        >
-          Reserve
-        </v-btn>
+        <v-btn color="orange" text>Reserve</v-btn>
+        <v-btn color="orange" text @click="openCalendar">Calendar</v-btn>
+        <v-spacer/>
+        <v-btn color="orange" text @click="close">Back</v-btn>
       </v-card-actions>
     </v-card>
+
+    <calendar ref="calendar"/>
+
   </v-dialog>
 </template>
 
 <script>
+  import Calendar from '@/components/TourCalendar.vue'
+
   export default {
     name: 'TourDetailCard',
+    components: {
+      Calendar
+    },
     // props: ['tourInfo'],
     data: () => ({
       dialog: false,
@@ -87,6 +79,9 @@
           console.log(item)
           this.tourInfo = Object.assign({}, item)
           this.dialog = true
+      },
+      openCalendar () {
+          this.$refs.calendar.open()
       },
       close () {
           this.dialog = false

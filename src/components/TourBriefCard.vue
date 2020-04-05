@@ -1,12 +1,12 @@
 <template>
   <v-card class="ma-2"
           max-width="300">
+    <v-card-title class="justify-center">{{ tourInfo.title }}</v-card-title>
     <v-img
       class="white--text align-end"
       height="200px"
-      :src='tourInfo.picture'
+      :src="tourInfo.picture + '_small.jpg'"
       @click="onClick">
-      <v-card-title>{{ tourInfo.title }}</v-card-title>
     </v-img>
 
     <v-card-subtitle class="pb-0">{{ tourInfo.subtitle }}</v-card-subtitle>
@@ -21,15 +21,9 @@
         text
         @click="onClick"
       >
-        Share
+        Details
       </v-btn>
 
-      <v-btn
-        color="orange"
-        text
-      >
-        Explore
-      </v-btn>
     </v-card-actions>
   </v-card>
 </template>

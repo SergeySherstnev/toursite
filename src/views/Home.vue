@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height id="home-page">
+  <v-container fluid fill-height id="home-page" align-start>
     <div v-for="tour of tours" v-bind:key="tour.id">
         <tour-brief-card :tourInfo="tour"
                          @click="openDetailedCard(tour.id)"/>
@@ -26,21 +26,27 @@
         title: 'Ermitazh',
         subtitle: 'Number 10',
         description: 'Description',
-        picture: 'images/' + 'Ermitazh_large.jpg',
+        score: 4,
+        scoreTotal: 113,
+        picture: 'images/' + 'Ermitazh',
       },
         {
           id: 1,
           title: 'City Tour',
           subtitle: 'Number 1',
           description: 'Description',
-          picture: 'images/' + 'petersburg_large.jpg',
+          score: 4,
+          scoreTotal: 113,
+          picture: 'images/' + 'petersburg',
         },
         {
           id: 2,
           title: 'Peterhof',
           subtitle: 'Number 2',
           description: 'Description',
-          picture: 'images/' + 'peterhof_large.jpg',
+          score: 4,
+          scoreTotal: 113,
+          picture: 'images/' + 'peterhof',
         }],
     }),
     methods: {
