@@ -61,7 +61,6 @@
     components: {
       Calendar
     },
-    // props: ['tourInfo'],
     data: () => ({
       dialog: false,
       tourInfo: {
